@@ -69,6 +69,9 @@ class OpenWeather():
 
 
 def main():
+    if len(argv) < 2:
+        print("Please pass a location name!\a")
+        exit(1)
     location = ','.join(argv[1:])
     OpenWeatherObject = OpenWeather(location)
     OpenWeatherObject.get_weather()
