@@ -1,11 +1,42 @@
 #!/usr/bin/sh
 
-# Define a path to store the image
-path_to_img="/home/deepjyoti30/.i3/screen.png" # Add path of the wall that you want to make lockscreen
+# Default paths defined.
+# Will be overwritten in case paths are passed.
+path_to_img="/home/deepjyoti30/.i3/screen.png"
+path_user_img="/home/deepjyoti30/.i3/dev_pic_small.jpg"
 
-path_user_img="/home/deepjyoti30/.i3/dev_pic_small.jpg" # Add the users image to be put over the lockscreen wallpaper
-
+# Path to store the final image after editing.
 final_img="/home/deepjyoti30/.i3/lockscreen.png"
+
+
+show_help(){
+    echo "USAGE: "$0" [path_to_img] [path_to_user_img]"
+    echo ""
+    echo "Optional arguments:"
+    echo ""
+    echo "  path_to_img:      Path to the image to be used as background."
+    echo "  path_to_user_img: Path to the image to be used as user image."
+    echo ""
+}
+
+# Show help if --help passed and exit
+if [ "$1" = "--help" ]; then
+    show_help
+    exit
+fi
+
+
+# Update defaults.
+
+if [ ! "$1" = "" ]; then
+    path_to_img=$1 
+fi
+
+
+if [ ! "$2" = "" ]; then
+    path_user_img=$2
+fi
+
 
 # Function to crop the pic to a circle
 # Definition of the function is found on stacoverflow 
