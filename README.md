@@ -29,6 +29,16 @@ albumname: Name of the album you want songs for.
 
 #### Shell script to make a beautiful lockscreen. Uses i3lock.
 
+```
+USAGE: ./lock.sh [path_to_img] [path_to_user_img]
+
+Optional arguments:
+
+  path_to_img:      Path to the image to be used as background.
+  path_to_user_img: Path to the image to be used as user image.
+
+```
+
 ### Tip: Update the two paths inside the script to get it to work.
 
 ## [setMetadata.py](https://github.com/deepjyoti30/Scripts/blob/master/setMetadata.py)
