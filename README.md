@@ -61,3 +61,17 @@ Usage: python weather.py location
 
 location: Name of the place you want weather info of.
 ```
+
+## [play_from_yt.sh](https://github.com/deepjyoti30/Scripts/blob/master/play_from_yt.sh)
+
+#### Play video from youtube directly from cli.
+
+Depends on the python file [search_yt.py](https://github.com/deepjyoti30/Scripts/blob/master/search_yt.py) to get URL.
+
+```
+Usage: ./play_from_yt 'video_name'
+
+song_name: Name of the video you want to see
+
+Important: Make sure the name is inside inverted commas.
+```
