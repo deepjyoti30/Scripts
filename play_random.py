@@ -3,42 +3,40 @@ import os
 from sys import argv, exit
 from subprocess import Popen
 
-dir = str(argv[1])
 
-if not os.path.isdir(dir):
-    print("{} not a directory!\a".format(dir))
-    exit()
-
-items = os.listdir(dir)
-
-rand_number = randint(1, len(items))
-count = 1
+items = []
 
 
-def get_playable_file(_path):
-    """Extract a playable file from the path.
-    Useful if the random number matches a folder.
-    In that case this function will return the path
-    to a playable file inside the folder."""
+def get_items(passed_dir, blacklist=[]):
+    """Recursively check the directory to find
+    all the files."""
+    global items
+    passed_dir = os.path.expanduser(passed_dir)
 
-    # First check, if path is a folder.
-    if os.path.isdir(_path):
-        playable_file = _path
-        for file in os.listdir(_path):
-            if file.endswith("mp4"):
-                playable_file = os.path.join(_path, file)
-        return playable_file
-    else:
-        return _path
+    if not os.path.exists(passed_dir):
+        raise FileNotFoundError
+
+    for file in os.listdir(passed_dir):
+        if os.path.isdir(os.path.join(passed_dir, file)):
+            temp_items = get_items(os.path.join(passed_dir, file))
+            items.append(temp_items)
+        else:
+            if file[file.find('.') + 1:] not in blacklist:
+                items.append(os.path.join(passed_dir, file))
+    return items
 
 
-for file in items:
-    if count == rand_number:
-        file_to_open = get_playable_file(os.path.join(dir, file))
-        input("Playing {}".format(file_to_open))
-        Popen(['mpv',
-              '--really-quiet',
-              '--save-position-on-quit',
-              file_to_open])
-        print("Done")
-    count += 1
+def main():
+    dir = str(argv[1])
+    whitelist = str(argv[2:])
+
+    items = get_items(dir, whitelist)
+
+    rand_number = randint(1, len(items))
+
+    print("Randome file is {}".format(items[rand_number]))
+    input()
+
+
+if __name__ == "__main__":
+    main()
