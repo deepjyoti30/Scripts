@@ -42,6 +42,8 @@ def main():
     rand_number = randint(1, len(items))
     file_to_open = items[rand_number]
 
+    print("Playing {}".format(file_to_open.split('/')[-1]))
+
     Popen([
             'mpv',
             '--really-quiet',
