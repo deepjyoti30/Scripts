@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """
 Use Openweather to get weather.
 
