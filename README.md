@@ -75,3 +75,11 @@ song_name: Name of the video you want to see
 
 Important: Make sure the name is inside inverted commas.
 ```
+
+## [series_better.py](https://github.com/deepjyoti30/Scripts/blob/master/series_better.py)
+
+#### Just a simple script to keep track of the series that you watch locally.
+
+```
+Usage: python series_better.py <path to local series dir>
+```
